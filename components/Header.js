@@ -6,13 +6,18 @@ const linkStyle = {
 
 const Header = () => (
     <div>
-        <Link href="/">
-          <a style={linkStyle}>Home</a>
-        </Link>
-        <Link href="/about">
-          <a style={linkStyle}>About</a>
-        </Link>
+        <h1>Google Books API</h1>
     </div>
 )
 
 export default Header
+
+/*
+		<Link href="/">
+          <a style={linkStyle}>Home</a>
+        
+        </Link>
+        <Link href="/about">
+          <a style={linkStyle}>About</a>
+        </Link>
+*/
