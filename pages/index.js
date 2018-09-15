@@ -1,19 +1,18 @@
-//
-import Header from '../components/Header'
-import Layout from '../components/MyLayout.js'
-
-const rootDivStyle = {
-  backgroundColor: 'blue',
-  boxSize: 'border-box',
-  margin: 0,
-  padding: 0
-}
-
-import Link from 'next/link'
+import Head from 'next/head';
+import Menu from '../components/Menu'
+//import Page from '../components/page';
 
 const Index = () => (
-  <div style={rootDivStyle}>
-	    <Header />
+  <div className = 'rootDiv'>
+  		<Head>
+  			<meta charset="UTF-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  			<title>Lab 1 - Express app</title>
+  		</Head>
+  		<div className = 'title'>
+    		<h1>Google Books API</h1>
+    	</div>
+	    <Menu />
 	    <p>Hello Next.js</p>
 	    
 	    <style global jsx>{`
@@ -31,14 +30,32 @@ const Index = () => (
 	      }
 	      body {
 	      	 background-image: 
-				linear-gradient(
-				    rgba(0, 0, 24, 0.5),
-				    rgba(0, 0, 24, 0.5)
-				    ), url('/static/spa15.jpg');
-				background-position: center 70%;
+				url('/static/book1.jpg');
+				background-position: center;
 				background-repeat: no-repeat;
 				background-size: cover;
 	      }
+	      .rootDiv {
+	      		height: 100%;
+	      		width: 100%;
+	      }
+	      .title {
+	    		height: 200px;
+	    		display: flex;
+	    		flex-flow: column wrap;
+	    		align-items: center;
+	    	}
+	    	h1 {
+	    		text-align: center;
+	    		align-self: center;
+	    		display: inline;
+	    		margin: auto;
+	    		background-color: black;
+	    		text-transform: uppercase;
+	    		color: white;
+	    		padding: 5px 10px 5px 10px;
+	    		opacity: 0.5;
+	    	}
     	`}</style>
   </div>
 )
