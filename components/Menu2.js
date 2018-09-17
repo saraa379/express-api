@@ -1,41 +1,64 @@
-import React, {Component} from 'react';
-import {actionClickTab} from '../actions/actions.js';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import Link from 'next/link';
 
-
-class Menu extends Component {
-
-	render() {
-		const menuItemsArray = ['Home', 'History'];
-		const currentTab = this.props.currentTab;
-		var that = this;
-		const listItems = menuItemsArray.map(function(tab) {
-				  if (tab === currentTab) {
-					return <div className="chosen" key={tab}>
-								  {tab}
-							</div>;
-				  } else if (tab !== currentTab){
-					return <div key={tab} onClick={event => that.props.dispatch(actionClickTab(tab))}>
-								  {tab}
-							</div>;
-				  }//end of else
-			}); //end of map
-
-		return (
-			<nav>
-				 	{listItems}
-			</nav>
-		)
+class Menu2 extends Component {
+	constructor(props) {
+			super(props);
 	}
 
+	render() {
+			const menuItemsArray = ['Books', 'Add book', 'Update Book', 'Delete book'];
+			const currentTab = this.props.chosenTab;
+			const funcClick = this.props.clickEvent;
+			const listItems = menuItemsArray.map(function(tab) {
+          if (tab == currentTab) {
+          	if(tab == 'Books'){
+          		return <Link href="/" key={tab}>
+			          		<a className='active'>Books</a>
+			        	</Link>
+          	} else if (tab == 'Add book') {
+          		return <Link href="/create" key={tab}>
+			          		<a className='active'>Add book</a>
+			        	</Link>
+          	} else if (tab == 'Update Book') {
+          		return <Link href="/edit" key={tab}>
+			          		<a className='active'>Edit Book</a>
+			        	</Link>
+			} else if (tab == 'Delete book'){
+				return <Link href="/delete" key={tab}>
+			          		<a className='active'>Delete book</a>
+			        	</Link>
+			} 
+          } else if (tab != currentTab){
+            if(tab == 'Books'){
+          		return <Link href="/" key={tab}>
+			          		<a>Books</a>
+			        	</Link>
+          	} else if (tab == 'Add book') {
+          		return <Link href="/create" key={tab}>
+			          		<a>Add book</a>
+			        	</Link>
+          	} else if (tab == 'Update Book') {
+          		return <Link href="/edit" key={tab}>
+			          		<a>Edit book</a>
+			        	</Link>
+			} else if (tab == 'Delete book'){
+				return <Link href="/delete" key={tab}>
+			          		<a>Delete book</a>
+			        	</Link>
+			} 
+          }//end of else
+      });
+
+      return (
+      	<div>
+	        <nav>
+	            {listItems}
+	        </nav>
+        </div>
+      );//end of return
+
+	  } //end of render
 } //end of component
-let mapStateToProps = state => {
-	return {
-		currentTab: state.currentTab
-	};
-}
 
-export default connect(mapStateToProps)(Menu);
-
-
-//
+export default Menu2;
