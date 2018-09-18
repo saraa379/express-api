@@ -8,7 +8,7 @@ const Header = () => (
 			<title>Lab 1 - Express app</title>
 		</Head>
 		<div className = 'title'>
-			<h1>Open Library API</h1>
+			<h1>Google Books API</h1>
 		</div>
 	</div>
 )

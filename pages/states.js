@@ -8,21 +8,19 @@ import rootReducer from './reducers/reducer.js';
 
 const initialState = {
 	currentTab: 'Home',
-	pIdAddedCart: 0,
-	//productsInCart: [],
 	books: [
 		{name: 'HP',
 			 id: 1,
 			 year: 2000,
-			 author: '',
+			 authors: [],
 			 desc: '',
-			 url: "p1"},
+			 url: ""},
 		{name: 'HP',
 			 id: 1,
 			 year: 2000,
-			 author: '',
+			 authors: [],
 			 desc: '',
-			 url: "p1"}
+			 url: ""}
   	]
 };
 

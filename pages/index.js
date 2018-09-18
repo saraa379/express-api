@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import Menu2 from '../components/Menu2';
 import Header from '../components/Header';
 import Books from '../components/Books';
-//import Page from '../components/page';
 
 class Index extends Component {
 	constructor(props) {
@@ -11,6 +10,17 @@ class Index extends Component {
 			this.state = {currentTab: "Books"};
 
 			this.tabClick = this.tabClick.bind(this);
+	}
+
+	static async getInitialProps() {
+		console.log('fetching data...');
+	    const res = await fetch('https://www.googleapis.com/books/v1/volumes?q=harrypotter');
+		const jsonData = await res.json();
+		
+
+		return {
+		    bookData: jsonData.items
+  		}
 	}
 
 	tabClick(ind) {
@@ -23,7 +33,7 @@ class Index extends Component {
 		  <div className = 'rootDiv'>
 		  		<Header></Header>
 			    <Menu2 chosenTab={this.state.currentTab} clickEvent={this.tabClick}></Menu2>
-			    <Books></Books>
+			    <Books bookData={this.props.bookData}></Books>
 			    
 			    <style global jsx>{`
 			    	* {
@@ -88,6 +98,28 @@ class Index extends Component {
 			    	}
 			    	.active {
 			    		background-color: grey;
+			    	}
+			    	.bookList {
+			    		color: white;
+			    		width: 100%;
+			    		display: flex;
+			    		flex-flow: column nowrap;
+			    		justify-content: center;
+			    		align-items; center;
+			    		margin-top: 30px;
+			    		margin-bottom: 30px;
+			    	}
+			    	.book {
+			    		background-color: black;
+			    		opacity: 0.7;
+			    		margin: 10px;
+			    		padding: 20px 10px 20px 10px;
+			    		width: 80%;
+			    		align-self: center;
+			    		margin: auto;
+			    	}
+			    	.book p {
+			    		padding-bottom: 5px;
 			    	}
 		    	`}</style>
 		  </div>
