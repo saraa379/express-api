@@ -67,7 +67,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -135,8 +135,8 @@ function (_Component) {
       }, {
         id: 2,
         title: "ssss"
-      }];
-      console.log("Comp book recieved: " + bookArray);
+      }]; //console.log("Comp book recieved: " + bookArray);
+
       var listItems = bookArray.map(function (book) {
         console.log("Individual book info: " + book.id);
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
@@ -144,27 +144,27 @@ function (_Component) {
           key: book.id,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 29
+            lineNumber: 30
           }
         }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 31
+            lineNumber: 32
           }
         }, "Title: ", book.volumeInfo.title), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 32
+            lineNumber: 33
           }
         }, "Author: ", book.volumeInfo.authors), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 33
+            lineNumber: 34
           }
         }, "Published date: ", book.volumeInfo.publishedDate), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 34
+            lineNumber: 35
           }
         }, "Description: ", book.volumeInfo.description));
       });
@@ -172,7 +172,7 @@ function (_Component) {
         className: "bookList",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 41
+          lineNumber: 42
         }
       }, listItems); //end of return
 
@@ -594,7 +594,7 @@ function (_Component) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("./pages/index.js");

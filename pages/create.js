@@ -30,14 +30,13 @@ class Create extends Component {
 			    <Menu2 chosenTab={this.state.currentTab} clickEvent={this.tabClick}></Menu2>
 			    <div className="book">
 			    	<div id="form_content">
-						<form action="">
-							<input type = "text" id = "btitle" placeholder="Book title" />
-							<input type = "text" id = "bauthor" placeholder="Book author" />
-							<input type = "text" id = "bdate" placeholder="Published date" />
+						<form action="/addbook" method="POST">
+							<input type = "text" id = "btitle" placeholder="Book title" name="title"/>
+							<input type = "text" id = "bauthor" placeholder="Book author" name="author"/>
+							<input type = "text" id = "bdate" placeholder="Published date" name="date"/>
 							<textarea id="bdesc" placeholder="Description"
-								rows="7"></textarea>
-							<button class="btn"
-									id="btnAdd"> Add book </button>
+								rows="7" name="desc"></textarea>
+							<button id="btnAdd" type="submit"> Add book </button>
 						</form>
  					</div>//end of form content
 			    </div>

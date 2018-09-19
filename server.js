@@ -1,5 +1,6 @@
 const express = require('express')
 const next = require('next')
+const bodyParser= require('body-parser')
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -11,6 +12,13 @@ app.prepare()
 
   server.get('*', (req, res) => {
     return handle(req, res)
+  })
+
+  server.use(bodyParser.urlencoded({extended: true}))
+
+  server.post('/addbook', (req, res) => {
+    console.log('Hellooooooooooooooooo!')
+    console.log(req.body)
   })
 
   server.listen(3000, (err) => {

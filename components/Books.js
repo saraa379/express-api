@@ -13,6 +13,7 @@ class Books extends Component {
 
 
 	componentWillMount() {
+
 	    this.setState({
 	      books: this.props.bookData
 	    })
@@ -21,7 +22,7 @@ class Books extends Component {
 	render() {
 		var bookArray = this.state.books;
 		var books = [{id: 1, title: "lala"}, {id: 2, title: "ssss"}]
-		console.log("Comp book recieved: " + bookArray);
+		//console.log("Comp book recieved: " + bookArray);
 
 		const listItems = bookArray.map(function(book) {
 			console.log("Individual book info: " + book.id);
