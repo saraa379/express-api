@@ -4,21 +4,51 @@
 
 import React, { Component } from 'react';
 import fetch from 'isomorphic-unfetch';
+import fire from '../components/fire';
 //const writeFileP = require("write-file-p");
 
 class Books extends Component {
 	constructor(props) {
 			super(props);
 			this.state = {books: []};
+			this.fbCallback = this.fbCallback.bind(this);
 	}
 
 
 	componentWillMount() {
 
+		fire.database().ref('books/').on('value', this.fbCallback);//end of fire
+/*
 	    this.setState({
 	      books: this.props.bookData
-	    })
-    }
+	    })*/
+
+	   /* fire.database().ref('books/').on('value', function(snapshot) {
+				var dataArray = [];
+				snapshot.forEach( child => {
+
+					var bookTemp = child.val();
+					dataArray.push(bookTemp);
+				})//end of foreach
+				console.log("books from db: " + dataArray);
+				
+			})//end of db.ref*/
+
+	   
+    }//end of will mount
+
+    fbCallback = function(snapshot) {
+		var that = this;
+		var dataArray = [];
+		snapshot.forEach( child => {
+
+			var bookTemp = child.val();
+			dataArray.unshift(bookTemp);
+		})//end of foreach
+		that.setState({
+				books: dataArray
+		});
+	}
 
     componentDidMount() {
 		//var book = this.readTextFile('./static/book.txt');
@@ -36,10 +66,10 @@ class Books extends Component {
 			
             return <div className="book" key={book.id}>
 
-            			<p>Title: {book.volumeInfo.title}</p>
-                        <p>Author: {book.volumeInfo.authors}</p>
-                        <p>Published date: {book.volumeInfo.publishedDate}</p>
-                        <p>Description: {book.volumeInfo.description}</p> 
+            			<p>Title: {book.title}</p>
+                        <p>Author: {book.author}</p>
+                        <p>Published date: {book.date}</p>
+                        <p>Description: {book.desc}</p> 
                     </div>;
 
           

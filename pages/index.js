@@ -20,7 +20,7 @@ class Index extends Component {
 	    const res = await fetch('https://www.googleapis.com/books/v1/volumes?q=harrypotter');
 		const jsonData = await res.json();
 		var books = jsonData.items;
-		console.log("Books: " + books);
+		//console.log("Books: " + books);
 
 
 		
@@ -29,7 +29,6 @@ class Index extends Component {
 			fire.database().ref('books/').once('value', function(snapshot) {
 				let data = snapshot.val();
 				if (data !== null) {
-					console.log("Books in the db");
 				} else {
 					console.log("Books in the db");
 					var newBook = {
@@ -40,8 +39,8 @@ class Index extends Component {
 						date: book.volumeInfo.publishedDate,
 						desc: book.volumeInfo.description
 					}
-					var bookKey = fire.database().ref('books/').push(newBook).key;
-					fire.database().ref('books/' + bookKey + '/key').set(bookKey);
+					//var bookKey = fire.database().ref('books/').push(newBook).key;
+					//fire.database().ref('books/' + bookKey + '/key').set(bookKey);
 				}
 				
 			})//end of db.ref
