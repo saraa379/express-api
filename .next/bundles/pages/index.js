@@ -29,6 +29,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 //AIzaSyB0cooAANtGVdiLnD0SZrZZ_1cN00Z2vpg - google api key
 //https://books.google.com/
+//<img src={require(book.volumeInfo.imageLinks.smallThumbnail)} alt="logo"/>
 
 
 
@@ -75,27 +76,27 @@ function (_Component) {
           key: book.id,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 28
+            lineNumber: 29
           }
         }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 30
+            lineNumber: 31
           }
         }, "Title: ", book.volumeInfo.title), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 31
+            lineNumber: 32
           }
         }, "Author: ", book.volumeInfo.authors), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 32
+            lineNumber: 33
           }
         }, "Published date: ", book.volumeInfo.publishedDate), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 33
+            lineNumber: 34
           }
         }, "Description: ", book.volumeInfo.description));
       });
@@ -103,7 +104,7 @@ function (_Component) {
         className: "bookList",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 40
+          lineNumber: 41
         }
       }, listItems); //end of return
 

@@ -1,5 +1,6 @@
-//AIzaSyB0cooAANtGVdiLnD0SZrZZ_1cN00Z2vpg - google api key
+
 //https://books.google.com/
+//<img src={require(book.volumeInfo.imageLinks.smallThumbnail)} alt="logo"/>
 
 import React, { Component } from 'react';
 import fetch from 'isomorphic-unfetch';
@@ -26,7 +27,7 @@ class Books extends Component {
 			console.log("Individual book info: " + book.id);
 			
             return <div className="book" key={book.id}>
-            			
+
             			<p>Title: {book.volumeInfo.title}</p>
                         <p>Author: {book.volumeInfo.authors}</p>
                         <p>Published date: {book.volumeInfo.publishedDate}</p>
