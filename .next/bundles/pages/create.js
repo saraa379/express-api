@@ -1,7 +1,7 @@
 module.exports =
 __NEXT_REGISTER_PAGE('/create', function() {
           var comp =
-      webpackJsonp([4],{
+      webpackJsonp([5],{
 
 /***/ "./components/Header.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -37,23 +37,29 @@ var Header = function Header() {
     content: "width=device-width, initial-scale=1, maximum-scale=1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 7
+      lineNumber: 8
     }
   }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 8
+      lineNumber: 9
     }
-  }, "Lab 1 - Express app")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-    className: "title",
+  }, "Lab 1 - Express app"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("script", {
+    src: "https://www.gstatic.com/firebasejs/4.10.1/firebase.js",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 10
     }
+  })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+    className: "title",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 12
+    }
   }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11
+      lineNumber: 13
     }
   }, "Google Books API")));
 };
@@ -850,7 +856,7 @@ var _url = __webpack_require__("./node_modules/url/url.js");
 
 var _react = _interopRequireWildcard(__webpack_require__("./node_modules/react/index.js"));
 
-var _propTypes = _interopRequireDefault(__webpack_require__("./node_modules/prop-types/index.js"));
+var _propTypes = _interopRequireDefault(__webpack_require__("./node_modules/next/node_modules/prop-types/index.js"));
 
 var _propTypesExact = _interopRequireDefault(__webpack_require__("./node_modules/prop-types-exact/build/index.js"));
 
@@ -2401,7 +2407,7 @@ function (_Component) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("./pages/create.js");
@@ -2409,7 +2415,7 @@ module.exports = __webpack_require__("./pages/create.js");
 
 /***/ })
 
-},[3])
+},[4])
           return { page: comp.default }
         })
       ;

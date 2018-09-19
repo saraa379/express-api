@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import Menu2 from '../components/Menu2';
 import Header from '../components/Header';
 import Books from '../components/Books';
+import fire from '../components/fire';
+
+var bookExist = false;
 
 class Index extends Component {
 	constructor(props) {
@@ -16,7 +19,35 @@ class Index extends Component {
 		console.log('fetching data...');
 	    const res = await fetch('https://www.googleapis.com/books/v1/volumes?q=harrypotter');
 		const jsonData = await res.json();
+		var books = jsonData.items;
+		console.log("Books: " + books);
+
+
 		
+		books.map(function(book) {
+
+			fire.database().ref('books/').once('value', function(snapshot) {
+				let data = snapshot.val();
+				if (data !== null) {
+					console.log("Books in the db");
+				} else {
+					console.log("Books in the db");
+					var newBook = {
+						key: "",
+						id: book.id,
+						title: book.volumeInfo.title,
+						author: book.volumeInfo.authors,
+						date: book.volumeInfo.publishedDate,
+						desc: book.volumeInfo.description
+					}
+					var bookKey = fire.database().ref('books/').push(newBook).key;
+					fire.database().ref('books/' + bookKey + '/key').set(bookKey);
+				}
+				
+			})//end of db.ref
+			
+      	});
+
 
 		return {
 		    bookData: jsonData.items

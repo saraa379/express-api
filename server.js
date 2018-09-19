@@ -1,6 +1,7 @@
 const express = require('express')
 const next = require('next')
 const bodyParser= require('body-parser')
+var fs = require('fs');
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -19,6 +20,8 @@ app.prepare()
   server.post('/addbook', (req, res) => {
     console.log('Hellooooooooooooooooo!')
     console.log(req.body)
+    fs.writeFile('./static/book.txt', JSON.stringify(req.body))
+    res.redirect('/')
   })
 
   server.listen(3000, (err) => {

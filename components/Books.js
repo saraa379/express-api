@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import fetch from 'isomorphic-unfetch';
+//const writeFileP = require("write-file-p");
 
 class Books extends Component {
 	constructor(props) {
@@ -19,13 +20,19 @@ class Books extends Component {
 	    })
     }
 
+    componentDidMount() {
+		//var book = this.readTextFile('./static/book.txt');
+		//console.log("Book data: " + book);
+	}
+
+
+
 	render() {
 		var bookArray = this.state.books;
-		var books = [{id: 1, title: "lala"}, {id: 2, title: "ssss"}]
 		//console.log("Comp book recieved: " + bookArray);
 
 		const listItems = bookArray.map(function(book) {
-			console.log("Individual book info: " + book.id);
+			//console.log("Individual book info: " + book.id);
 			
             return <div className="book" key={book.id}>
 
