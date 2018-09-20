@@ -33,14 +33,13 @@ class Index extends Component {
 					console.log("Books in the db");
 					var newBook = {
 						key: "",
-						id: book.id,
 						title: book.volumeInfo.title,
 						author: book.volumeInfo.authors,
 						date: book.volumeInfo.publishedDate,
 						desc: book.volumeInfo.description
 					}
-					//var bookKey = fire.database().ref('books/').push(newBook).key;
-					//fire.database().ref('books/' + bookKey + '/key').set(bookKey);
+					var bookKey = fire.database().ref('books/').push(newBook).key;
+					fire.database().ref('books/' + bookKey + '/key').set(bookKey);
 				}
 				
 			})//end of db.ref

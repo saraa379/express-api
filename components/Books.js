@@ -55,7 +55,9 @@ class Books extends Component {
 		//console.log("Book data: " + book);
 	}
 
-
+	componentWillUnmount() {
+		fire.database().ref('books/').off('value', this.fbCallback);
+	}
 
 	render() {
 		var bookArray = this.state.books;
@@ -64,9 +66,10 @@ class Books extends Component {
 		const listItems = bookArray.map(function(book) {
 			//console.log("Individual book info: " + book.id);
 			
-            return <div className="book" key={book.id}>
+            return <div className="book" key={book.key}>
 
             			<p>Title: {book.title}</p>
+            			<p>Key: {book.key}</p>
                         <p>Author: {book.author}</p>
                         <p>Published date: {book.date}</p>
                         <p>Description: {book.desc}</p> 
