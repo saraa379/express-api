@@ -39,6 +39,8 @@ class Create extends Component {
     
 	    var bookKey = fire.database().ref('books/').push(newBook).key;
 	    fire.database().ref('books/' + bookKey + '/key').set(bookKey);
+	    let message = "The book is successfully added";	    
+	    return message;
   	}
   	handleChangeAuthor(event) {
 			this.setState({bAuthor: event.target.value});

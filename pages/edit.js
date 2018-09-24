@@ -2,18 +2,71 @@
 import React, { Component } from 'react';
 import Menu2 from '../components/Menu2';
 import Header from '../components/Header';
+import fire from '../components/fire';
 
 class Edit extends Component {
 	constructor(props) {
 			super(props);
-			this.state = {currentTab: "Update Book"};
+			this.state = {currentTab: "Update Book",
+			    		  eKey: "",
+						  eTitle: "",
+						  eAuthor: "",
+						  eDate: "",
+						  eDesc: ""
+			};
 			this.tabClick = this.tabClick.bind(this);
+			this.handleClick = this.handleClick.bind(this);
+			this.handleChangeKey = this.handleChangeKey.bind(this);
+			this.handleChangeTitle = this.handleChangeTitle.bind(this);
+			this.handleChangeAuthor = this.handleChangeAuthor.bind(this);
+			this.handleChangeDate = this.handleChangeDate.bind(this);
+			this.handleChangeDesc = this.handleChangeDesc.bind(this);
 	}
 
 	tabClick(ind) {
     //console.log('Wrapper: Click happened: ' + ind);
     	this.setState({currentTab: ind});
   	}
+
+  	handleClick() {
+  		if (this.state.eKey != "") {
+	         console.log("Key is not empty");
+	           if(this.state.eTitle != ""){
+		           fire.database().ref('books/' + this.state.eKey + '/title').set(this.state.eTitle);
+		       } 
+		       if(this.state.eAuthor != ""){
+		           fire.database().ref('books/' + this.state.eKey + '/author').set(this.state.eAuthor);
+		       } 
+		       if(this.state.eDate != ""){
+		           fire.database().ref('books/' + this.state.eKey + '/date').set(this.state.eDate);
+		       } 
+		       if(this.state.eDesc != ""){
+		           fire.database().ref('books/' + this.state.eKey + '/desc').set(this.state.eDesc);
+		       }  
+		        
+	    } else {
+	    	console.log("Key is empty");
+	    }
+    
+  	}
+
+  	handleChangeKey(event) {
+			this.setState({eKey: event.target.value});
+	}
+	handleChangeTitle(event) {
+			this.setState({eTitle: event.target.value});
+	}
+	handleChangeAuthor(event) {
+			this.setState({eAuthor: event.target.value});
+	}
+	handleChangeDate(event) {
+			this.setState({eDate: event.target.value});
+	}
+	handleChangeDesc(event) {
+			this.setState({eDesc: event.target.value});
+	}
+
+
 	render() {
 		return (
 		  <div className = 'rootDiv'>
@@ -21,15 +74,15 @@ class Edit extends Component {
 			    <Menu2 chosenTab={this.state.currentTab} clickEvent={this.tabClick}></Menu2>
 			    <div className="book">
 			    	<div id="form_content">
-						<form action="/editbook" method="POST">
-							<input type = "text" placeholder="Book key" name="ekey"/>
-							<input type = "text" placeholder="Book title" name="etitle"/>
-							<input type = "text" placeholder="Book author" name="eauthor"/>
-							<input type = "text" placeholder="Published date" name="edate"/>
+						<div className = "form">
+							<input type = "text" placeholder="Book key" value={this.state.eKey} onChange={this.handleChangeKey}/>
+							<input type = "text" placeholder="Book title" value={this.state.eTitle} onChange={this.handleChangeTitle}/>
+							<input type = "text" placeholder="Book author" value={this.state.eAuthor} onChange={this.handleChangeAuthor}/>
+							<input type = "text" placeholder="Published date" value={this.state.eDate} onChange={this.handleChangeDate}/>
 							<textarea id="bdesc" placeholder="Description"
-								rows="7" name="desc"></textarea>
-							<button type="submit"> Edit book </button>
-						</form>
+								rows="7" value={this.state.eDesc} onChange={this.handleChangeDesc}></textarea>
+							<button onClick={this.handleClick}> Edit book </button>
+						</div>
  					</div>//end of form content
 			    </div>
 			    
@@ -141,7 +194,7 @@ class Edit extends Component {
 						 margin: 5px auto;
 						 max-width: 500px;
 					}
-					form {
+					.form {
 						display: flex;
 						flex-flow: column wrap;
 						justify-content: center;

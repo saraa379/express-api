@@ -2,18 +2,36 @@
 import React, { Component } from 'react';
 import Menu2 from '../components/Menu2';
 import Header from '../components/Header';
+import fire from '../components/fire';
 
 class Delete extends Component {
 	constructor(props) {
 			super(props);
-			this.state = {currentTab: "Delete book"};
+			this.state = {currentTab: "Delete book",
+							dKey: ""
+			};
 			this.tabClick = this.tabClick.bind(this);
+			this.handleChangeKey = this.handleChangeKey.bind(this);
+			this.handleClick = this.handleClick.bind(this);
 	}
 
 	tabClick(ind) {
     //console.log('Wrapper: Click happened: ' + ind);
     	this.setState({currentTab: ind});
   	}
+  	handleChangeKey(event) {
+			this.setState({dKey: event.target.value});
+	}
+	handleClick() {
+  		if (this.state.dKey != "") {
+	         console.log("Key is not empty");
+		        fire.database().ref('books/' + this.state.dKey).remove();       
+	    } else {
+	    	console.log("Key is empty");
+	    }
+    
+  	}
+
 	render() {
 		return (
 		  <div className = 'rootDiv'>
@@ -22,8 +40,8 @@ class Delete extends Component {
 			    <div className="book">
 			    	<div id="form_content">
 						<form action="/deletebook" method="POST">
-							<input type = "text" placeholder="Book key" name="dkey"/>
-							<button type="submit"> Delete book </button>
+							<input type = "text" placeholder="Book key" value={this.state.dKey} onChange={this.handleChangeKey}/>
+							<button onClick={this.handleClick}> Delete book </button>
 						</form>
  					</div>//end of form content
 			    </div>

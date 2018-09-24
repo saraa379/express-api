@@ -30,52 +30,16 @@ app.prepare()
 
   server.post('/addbook', (req, res) => {
     
-    //console.log(req.body)
-    var newBook = {
-            key: "",
-            title: req.body.title,
-            author: req.body.author,
-            date: req.body.date,
-            desc: req.body.desc
-    }
-    console.log("New added book: " + newBook);
     
-    var bookKey = fire.database().ref('books/').push(newBook).key;
-    fire.database().ref('books/' + bookKey + '/key').set(bookKey);
-    //fs.writeFile('./static/book.txt', JSON.stringify(req.body))
-    //res.redirect('/')
-    //res.send({ result: 'success' })
-    res.redirect('/')
   })
 
   server.post('/editbook', (req, res) => {
     
-    console.log("Editing book: " + req.body);
-    console.log("Key of edited book: " + req.body.ekey);
-    if (req.body.ekey != "") {
-        if(req.body.etitle != ""){
-           fire.database().ref('books/' + req.body.ekey + '/title').set(req.body.etitle);
-       }  
-       if(req.body.eauthor != ""){
-           fire.database().ref('books/' + req.body.ekey + '/author').set(req.body.eauthor);
-       }  
-       if(req.body.edate != ""){
-           fire.database().ref('books/' + req.body.ekey + '/date').set(req.body.edate);
-       } 
-       if(req.body.desc != ""){
-           fire.database().ref('books/' + req.body.ekey + '/desc').set(req.body.desc);
-       }    
-    }
-    res.redirect('/')
+    
   })
 
   server.post('/deletebook', (req, res) => {
     
-    console.log("Key of edited book: " + req.body.dkey);
-    if (req.body.dkey != "") {
-        fire.database().ref('books/' + req.body.dkey).remove();      
-    }
-    res.redirect('/')
   })
 
   server.get('*', (req, res) => {
