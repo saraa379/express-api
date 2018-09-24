@@ -24,9 +24,7 @@ app.prepare()
     };
     var fire = !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
 
-  server.get('*', (req, res) => {
-    return handle(req, res)
-  })
+  
 
   server.use(bodyParser.urlencoded({extended: true}))
 
@@ -45,6 +43,8 @@ app.prepare()
     var bookKey = fire.database().ref('books/').push(newBook).key;
     fire.database().ref('books/' + bookKey + '/key').set(bookKey);
     //fs.writeFile('./static/book.txt', JSON.stringify(req.body))
+    //res.redirect('/')
+    //res.send({ result: 'success' })
     res.redirect('/')
   })
 
@@ -76,6 +76,10 @@ app.prepare()
         fire.database().ref('books/' + req.body.dkey).remove();      
     }
     res.redirect('/')
+  })
+
+  server.get('*', (req, res) => {
+    return handle(req, res)
   })
 
   server.listen(3000, (err) => {

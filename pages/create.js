@@ -2,27 +2,56 @@
 import React, { Component } from 'react';
 import Menu2 from '../components/Menu2';
 import Header from '../components/Header';
+import fire from '../components/fire';
 
 class Create extends Component {
 	constructor(props) {
 			super(props);
 			this.state = {currentTab: "Add book", 
-						  book: {id: 0,
-						  		 volumeInfo: {
-						  		 	title: "",
-						  		 	authors: [],
-						  		 	publishedDate: "",
-						  		 	description: ""
-						  		 }
-						  }
+						  bTitle: "",
+						  bAuthor: "",
+						  bDate: "",
+						  bDesc: ""
 			};
 			this.tabClick = this.tabClick.bind(this);
+			this.handleClick = this.handleClick.bind(this);
+			this.handleChange = this.handleChange.bind(this);
+			this.handleChangeAuthor = this.handleChangeAuthor.bind(this);
+			this.handleChangeDate = this.handleChangeDate.bind(this);
+			this.handleChangeDesc = this.handleChangeDesc.bind(this);
 	}
 
 	tabClick(ind) {
     //console.log('Wrapper: Click happened: ' + ind);
     	this.setState({currentTab: ind});
   	}
+  	handleClick() {
+    	//console.log('Wrapper: Click happened: ' + ind);
+    	//this.setState({currentTab: ind});
+    	var newBook = {
+            key: "",
+            title: this.state.bTitle,
+            author: this.state.bAuthor,
+            date: this.state.bDate,
+            desc: this.state.bDesc
+	    }
+	    console.log("New added book: " + newBook);
+    
+	    var bookKey = fire.database().ref('books/').push(newBook).key;
+	    fire.database().ref('books/' + bookKey + '/key').set(bookKey);
+  	}
+  	handleChangeAuthor(event) {
+			this.setState({bAuthor: event.target.value});
+	}
+	handleChange(event) {
+			this.setState({bTitle: event.target.value});
+	}
+	handleChangeDate(event) {
+			this.setState({bDate: event.target.value});
+	}
+	handleChangeDesc(event) {
+			this.setState({bDesc: event.target.value});
+	}
 	render() {
 		return (
 		  <div className = 'rootDiv'>
@@ -30,14 +59,15 @@ class Create extends Component {
 			    <Menu2 chosenTab={this.state.currentTab} clickEvent={this.tabClick}></Menu2>
 			    <div className="book">
 			    	<div id="form_content">
-						<form action="/addbook" method="POST">
-							<input type = "text" id = "btitle" placeholder="Book title" name="title"/>
-							<input type = "text" id = "bauthor" placeholder="Book author" name="author"/>
-							<input type = "text" id = "bdate" placeholder="Published date" name="date"/>
+						<div className = "form">
+							<input type="text" placeholder="Book title" value={this.state.bTitle} onChange={this.handleChange} />
+							<input type = "text" placeholder="Book author" value={this.state.bAuthor} onChange={this.handleChangeAuthor}/>
+							<input type = "text" placeholder="Published date" value={this.state.bDate} onChange={this.handleChangeDate}/>
 							<textarea id="bdesc" placeholder="Description"
-								rows="7" name="desc"></textarea>
-							<button id="btnAdd" type="submit"> Add book </button>
-						</form>
+								rows="7" value={this.state.bDesc} onChange={this.handleChangeDesc}></textarea>
+							<button onClick={this.handleClick}> Add book </button>
+						</div>
+
  					</div>//end of form content
 			    </div>
 			    
@@ -149,7 +179,7 @@ class Create extends Component {
 						 margin: 5px auto;
 						 max-width: 500px;
 					}
-					form {
+					.form {
 						display: flex;
 						flex-flow: column wrap;
 						justify-content: center;

@@ -14,7 +14,7 @@ class Index extends Component {
 
 			this.tabClick = this.tabClick.bind(this);
 	}
-
+/*
 	static async getInitialProps() {
 		console.log('fetching data...');
 	    const res = await fetch('https://www.googleapis.com/books/v1/volumes?q=harrypotter');
@@ -51,7 +51,7 @@ class Index extends Component {
 		    bookData: jsonData.items
   		}
 	}
-
+*/
 	tabClick(ind) {
     //console.log('Wrapper: Click happened: ' + ind);
     	this.setState({currentTab: ind});
@@ -62,7 +62,7 @@ class Index extends Component {
 		  <div className = 'rootDiv'>
 		  		<Header></Header>
 			    <Menu2 chosenTab={this.state.currentTab} clickEvent={this.tabClick}></Menu2>
-			    <Books bookData={this.props.bookData}></Books>
+			    <Books></Books>
 			    
 			    <style global jsx>{`
 			    	* {
