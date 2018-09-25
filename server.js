@@ -55,12 +55,41 @@ app.prepare()
   })
 
   server.post('/editbook', (req, res) => {
-    
+      console.log("Post request is recived: " + req.body.key);
+
+      if (req.body.key != "") {
+           console.log("Key is not empty");
+           if(req.body.title != ""){
+               fire.database().ref('books/' + req.body.key + '/title').set(req.body.title);
+           } 
+           if(req.body.author != ""){
+               fire.database().ref('books/' + req.body.key + '/author').set(req.body.author);
+           } 
+           if(req.body.date != ""){
+               fire.database().ref('books/' + req.body.key + '/date').set(req.body.date);
+           }  
+           if(req.body.desc != ""){
+               fire.database().ref('books/' + req.body.key + '/desc').set(req.body.desc);
+           }   
+            
+      } else {
+        console.log("Key is empty");
+      }
+
+      res.send({ success: true });
     
   })
 
   server.post('/deletebook', (req, res) => {
-    
+
+    if (req.body.key != "") {
+           console.log("Key is not empty");
+            fire.database().ref('books/' + req.body.key).remove();       
+    } else {
+        console.log("Key is empty");
+    }
+
+    res.send({ success: true });
   })
 
   server.get('*', (req, res) => {

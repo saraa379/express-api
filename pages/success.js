@@ -4,51 +4,16 @@ import Menu2 from '../components/Menu2';
 import Header from '../components/Header';
 import fire from '../components/fire';
 
-class Delete extends Component {
+class Success extends Component {
 	constructor(props) {
 			super(props);
-			this.state = {currentTab: "Delete book",
-							dKey: ""
-			};
+			
 			this.tabClick = this.tabClick.bind(this);
-			this.handleChangeKey = this.handleChangeKey.bind(this);
-			this.handleClick = this.handleClick.bind(this);
 	}
 
 	tabClick(ind) {
     //console.log('Wrapper: Click happened: ' + ind);
     	this.setState({currentTab: ind});
-  	}
-  	handleChangeKey(event) {
-			this.setState({dKey: event.target.value});
-	}
-	handleClick() {
-		let book = {
-  				key: this.state.dKey
-	    }
-
-		fetch('/deletebook', {
-			method: 'post',
-			body: JSON.stringify(book),
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			}
-		})
-		.then(response => {
-			console.log('Fetch successful');
-		})
-		.catch(function(error) {
-			console.log(error);
-		})
-	/*
-  		if (this.state.dKey != "") {
-	         console.log("Key is not empty");
-		        fire.database().ref('books/' + this.state.dKey).remove();       
-	    } else {
-	    	console.log("Key is empty");
-	    }
-    */
   	}
 
 	render() {
@@ -58,10 +23,7 @@ class Delete extends Component {
 			    <Menu2 chosenTab={this.state.currentTab} clickEvent={this.tabClick}></Menu2>
 			    <div className="book">
 			    	<div id="form_content">
-						<div className="form">
-							<input type = "text" placeholder="Book key" value={this.state.dKey} onChange={this.handleChangeKey}/>
-							<button onClick={this.handleClick}> Delete book </button>
-						</div>
+						Success
  					</div>//end of form content
 			    </div>
 			    
@@ -193,4 +155,4 @@ class Delete extends Component {
 	} //end of render
 } //end of component
 
-export default Delete;
+export default Success;

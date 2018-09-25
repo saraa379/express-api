@@ -29,6 +29,30 @@ class Edit extends Component {
   	}
 
   	handleClick() {
+
+  		let book = {
+  				key: this.state.eKey,
+	        	title: this.state.eTitle,
+	        	author: this.state.eAuthor,
+	        	date: this.state.eDate,
+	        	desc: this.state.eDesc
+	    }
+	     
+		fetch('/editbook', {
+			method: 'post',
+			body: JSON.stringify(book),
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			}
+		})
+		.then(response => {
+			console.log('Fetch successful');
+		})
+		.catch(function(error) {
+			console.log(error);
+		})
+  	/*
   		if (this.state.eKey != "") {
 	         console.log("Key is not empty");
 	           if(this.state.eTitle != ""){
@@ -46,7 +70,7 @@ class Edit extends Component {
 		        
 	    } else {
 	    	console.log("Key is empty");
-	    }
+	    }*/
     
   	}
 
