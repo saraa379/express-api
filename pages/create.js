@@ -19,15 +19,114 @@ class Create extends Component {
 			this.handleChangeAuthor = this.handleChangeAuthor.bind(this);
 			this.handleChangeDate = this.handleChangeDate.bind(this);
 			this.handleChangeDesc = this.handleChangeDesc.bind(this);
+			//this.update = this.update.bind(this);
+			//this.checkStatus = this.checkStatus.bind(this);
 	}
 
 	tabClick(ind) {
     //console.log('Wrapper: Click happened: ' + ind);
     	this.setState({currentTab: ind});
   	}
+  	/*
+  	function update(data) {
+		  return fetch('/addClicked', {
+		    method: 'post',
+		    body: JSON.stringify(data),
+		    headers: {
+		      'Accept': 'application/json',
+		      'Content-Type': 'application/json'
+		    }
+		  })
+		    .then(checkStatus)
+		    .then(()=>console.log('updated!!!'))
+	}
+
+	function checkStatus(response) {
+		  if (response.status >= 200 && response.status < 300) {
+		    return response
+		  } else {
+		    var error = new Error(response.statusText)
+		    error.response = response
+		    throw error
+		  }
+	}*/
   	handleClick() {
-    	//console.log('Wrapper: Click happened: ' + ind);
-    	//this.setState({currentTab: ind});
+  		let book = {
+	        	title: this.state.bTitle,
+	        	author: this.state.bAuthor,
+	        	date: this.state.bDate,
+	        	desc: this.state.bDesc
+	    }
+	     
+		fetch('/addClicked', {
+			method: 'post',
+			body: JSON.stringify(book),
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			}
+		})
+		.then(response => {
+			console.log('Fetch successful');
+		})
+		.catch(function(error) {
+			console.log(error);
+		})
+/*
+	     fetch('/addClicked', {method: 'POST', body: JSON.stringify(book), headers: new Headers({ "Content-Type": "application/json" })})
+		  .then(res => res.json())
+		  .then(jsonRes => {
+
+		    console.log("SUCCESS"); // gives 5
+
+		  })
+		}*/
+/*
+	     fetch('/addClicked', {method: 'POST', body: JSON.stringify(book), headers: new Headers({ "Content-Type": "application/json" })})
+		    .then(function(response) {
+		      if(response.ok) {
+		        console.log('click was recorded');
+		        return;
+		      }
+		    })
+		    .catch(function(error) {
+		      console.log(error);
+		    });*/
+
+		    /*
+	     fetch('/addClicked', {method: 'POST', body: JSON.stringify(book)})
+		  .then(resp => {return resp.json()})
+		  .then(json => {if( json.result === 'success' ){
+		  	console.log('Click was recorded');
+		  	return "success";
+		  }})
+		  .catch(function(error) {
+		    console.log(error);
+		  });   
+		  */
+/*
+	     fetch('/addClicked', {method: 'POST', body: JSON.stringify(book), headers: { 'Content-Type': 'application/json' }})
+	    .then(function(response) {
+	      if(response.ok) {
+	        console.log('Click was recorded');
+	        return;
+	      }
+	      throw new Error('Request failed.');
+	    })
+	    .catch(function(error) {
+	      console.log(error);
+	    });*/
+
+  	/*
+  	fetch(`http://localhost:3000/travel/${this.state.id}`, {
+
+       method: 'put',
+
+       body:    JSON.stringify(tripObject),
+
+       headers: { 'Content-Type': 'application/json' },
+
+   })
     	var newBook = {
             key: "",
             title: this.state.bTitle,
@@ -41,6 +140,7 @@ class Create extends Component {
 	    fire.database().ref('books/' + bookKey + '/key').set(bookKey);
 	    let message = "The book is successfully added";	    
 	    return message;
+	    */
   	}
   	handleChangeAuthor(event) {
 			this.setState({bAuthor: event.target.value});
@@ -62,7 +162,7 @@ class Create extends Component {
 			    <div className="book">
 			    	<div id="form_content">
 						<div className = "form">
-							<input type="text" placeholder="Book title" value={this.state.bTitle} onChange={this.handleChange} />
+							<input type="text" placeholder="Book title" value={this.state.bTitle} onChange={this.handleChange}/>
 							<input type = "text" placeholder="Book author" value={this.state.bAuthor} onChange={this.handleChangeAuthor}/>
 							<input type = "text" placeholder="Published date" value={this.state.bDate} onChange={this.handleChangeDate}/>
 							<textarea id="bdesc" placeholder="Description"
@@ -194,6 +294,12 @@ class Create extends Component {
 						 padding: 5px 10px 5px 10px;
 						 width: 8em;
 						 margin: 5px auto;
+					}
+					.visible {
+						display: block;
+					}
+					.invincible {
+						display: none;
 					}
 		    	`}</style>
 		  </div>

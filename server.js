@@ -25,11 +25,32 @@ app.prepare()
     var fire = !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
 
   
+  server.use(bodyParser.urlencoded({extended: false}))
+  server.use(bodyParser.json())
 
-  server.use(bodyParser.urlencoded({extended: true}))
 
-  server.post('/addbook', (req, res) => {
-    
+  server.post('/addClicked', (req, res) => {
+      //var obj = JSON.parse(req.body);
+      //console.log("Book is recieved" + obj.title);
+      //res.send('"hello!"');
+      console.log("Post request is recived: " + req.body.title);
+
+      var newBook = {
+            key: "",
+            title: req.body.title,
+            author: req.body.author,
+            date: req.body.date,
+            desc: req.body.desc
+    }
+    console.log("New added book: " + newBook.title);
+    console.log("New added book: " + newBook.author);
+    console.log("New added book: " + newBook.date);
+    console.log("New added book: " + newBook.desc);
+   
+    var bookKey = fire.database().ref('books/').push(newBook).key;
+    fire.database().ref('books/' + bookKey + '/key').set(bookKey);
+
+    res.send({ success: true });
     
   })
 
